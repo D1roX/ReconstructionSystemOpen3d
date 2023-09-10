@@ -201,8 +201,9 @@ class VideoPreProcessing:
         """
         Окончание записи видео.
         """
-        self.writer.release()
-        log.init('cv2.VideoWriter завершил работу.')
+        if self.writer:
+            self.writer.release()
+            log.init('cv2.VideoWriter завершил работу.')
 
     def set_video_capture_size(self, weight=config.input_weight, height=config.input_height):
         """
