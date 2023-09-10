@@ -36,7 +36,7 @@ def setup_video_pre_processing():
     video_pre_processing = VideoPreProcessing()
     video_pre_processing.set_config_realsense()
     video_pre_processing.set_video_capture()
-    video_pre_processing.set_video_writer()
+    #video_pre_processing.set_video_writer()
     return video_pre_processing
 
 
