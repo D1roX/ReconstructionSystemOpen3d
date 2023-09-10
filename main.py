@@ -56,7 +56,7 @@ def run_system():
     video_pre_processing = setup_video_pre_processing()
     reconstruction = setup_reconstruction(video_pre_processing)
     total_time = time.time()
-    while True:
+    while image_index <= 100:
         rgb, depth = get_t_depth_and_color_frames(video_pre_processing, priority)
         # rgb, depth = get_depth_and_color_frames_from_dir('dataset', image_index)
         if priority:
@@ -71,8 +71,8 @@ def run_system():
             if not success:
                 priority = True
 
-        if keyboard.is_pressed('esc'):
-            break
+        # if keyboard.is_pressed('esc'):
+        #     break
 
     log.info(f'FINAL TIME : {time.time() - total_time}')
     video_pre_processing.video_writer_release()
