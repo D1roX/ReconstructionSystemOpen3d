@@ -15,6 +15,7 @@ class ReconstructionConfig:
         self.depth_scale = 1000.0  # 1000.0
         self.block_count = 40000
         self.intrinsic = o3d.io.read_pinhole_camera_intrinsic('config/intrinsic.json')
+        print(self.intrinsic)
         self.intrinsic_tensor = o3d.core.Tensor(self.intrinsic.intrinsic_matrix)
         self.depth_max = 3.0
         self.odometry_distance_thr = 0.07
