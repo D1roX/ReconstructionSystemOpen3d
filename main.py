@@ -43,7 +43,7 @@ def setup_video_pre_processing():
 def setup_reconstruction(video_pre_processing):
     reconstruction_config = ReconstructionConfig()
     rgb, depth = get_t_depth_and_color_frames(video_pre_processing)
-    # rgb, depth = get_depth_and_color_frames_from_dir('dataset', 0)
+    #rgb, depth = get_depth_and_color_frames_from_dir('dataset', 0)
     iteration_time = time.time()
     reconstruction = Reconstruction(reconstruction_config, depth)
     log.info(f'{0} :  {time.time() - iteration_time}')
@@ -58,7 +58,7 @@ def run_system():
     total_time = time.time()
     while image_index <= 100:
         rgb, depth = get_t_depth_and_color_frames(video_pre_processing, priority)
-        # rgb, depth = get_depth_and_color_frames_from_dir('dataset', image_index)
+        #rgb, depth = get_depth_and_color_frames_from_dir('dataset', image_index)
         if priority:
             priority = False
 
