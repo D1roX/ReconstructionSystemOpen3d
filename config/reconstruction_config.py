@@ -10,7 +10,7 @@ class ReconstructionConfig:
     """
 
     def __init__(self):
-        self.device = o3d.core.Device('CPU:0')  # CPU:0 / CUDA:0
+        self.device = o3d.core.Device('CUDA:0')  # CPU:0 / CUDA:0
         self.voxel_size = 0.0058  # 0.0058
         self.block_resolution = 16
         self.depth_scale = 1000.0  # 1000.0
