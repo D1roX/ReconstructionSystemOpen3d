@@ -10,7 +10,7 @@ class ReconstructionConfig:
     """
 
     def __init__(self):
-        self.device = o3d.core.Device('CUDA:0')  # CPU:0 / CUDA:0
+        self.device = o3d.core.Device('CPU:0')  # CPU:0 / CUDA:0
         self.voxel_size = 0.0058  # 0.0058
         self.block_resolution = 16
         self.depth_scale = 1000.0  # 1000.0
@@ -30,10 +30,10 @@ class ReconstructionConfig:
         self.depth_min = 0.1
         self.surface_weight_thr = 3.0
 
-        if not os.path.exists('point clouds'):
-            os.mkdir('point clouds')
+        if not os.path.exists('pointClouds'):
+            os.mkdir('pointClouds')
 
         t = datetime.now()
-        output_folder = f'point clouds\\{t.day}.{t.month}.{t.year} {t.hour}-{t.minute}-{t.second}'
+        output_folder = f'pointClouds\\{t.day}.{t.month}.{t.year} {t.hour}-{t.minute}-{t.second}'
         os.mkdir(output_folder)
         self.output_path = f'{output_folder}\\result_pcd.ply'
