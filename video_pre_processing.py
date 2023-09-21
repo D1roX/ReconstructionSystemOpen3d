@@ -222,27 +222,26 @@ class VideoPreProcessing:
         """
         self.cap.set(cv2.CAP_PROP_FPS, config.fps)
 
-    def get_depth_frame(self, priority=False):
+    def get_depth_frame(self, priority=False, left_img=None, right_img=None):
         """
-        Получение кадра из видеопотока.
+        Получение кадра глубины.
         :param priority:
-        :return: цветной кадр и кадр глубины.
+        :return: кадр глубины.
         """
         if time.time() - self.last_frame_time >= self.frame_interval or priority:
-            try:
-                if self.is_the_function_initialized_set_config_realsense:
+            if self.is_the_function_initialized_set_config_realsense:
+                try:
                     frame = self.pipeline.wait_for_frames()
                     depth_frame = frame.get_depth_frame()
                     return depth_frame
-                else:
-                    left_img, right_img = self.cut_frame(self.get_color_frame())
+                except Exception as e:
+                    log.error(f'Ошибка получения кадра с realsense камеры.\n{e}')
+            else:
+                if left_img != None and right_img != None:
                     if config.StereoSGBM_or_StereoBM == 0:
                         return self.StereoSGBM_func_frame(left_img, right_img)
                     else:
                         return self.StereoBM_func_frame(left_img, right_img)
-            except Exception as e:
-                log.error(f'Ошибка получения кадра с realsense камеры.\n{e}')
-
         return None, None
 
     def set_frame_interval(self, new_time=config.frame_interval):
