@@ -69,11 +69,7 @@ class Reconstruction:
                                      self.config.trunc_voxel_multiplier, False)
 
     def launch(self, rgb, depth):
-        try:
-            self.set_new_frames(rgb, depth)
-            self.add_frames_to_model()
-        except Exception as e:
-            log.error(f'Ошибка интегрирования кадра в сцену.\n{e}')
-            return False
+        self.set_new_frames(rgb, depth)
+        self.add_frames_to_model()
         self.image_index += 1
         return True
